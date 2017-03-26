@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Bisection Method</title>
+	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="public/css/styles.css">
+</head>
+
+<body>
+	<div class="nav-left hidden-xs">
+  		<div class="button" id="btn">
+	    	<div class="bar top"></div>
+	    	<div class="bar middle"></div>
+	    	<div class="bar bottom"></div>
+	  	</div>
+	</div>
+	
+	<main>
+		<!-- Nav-left -->
+    	<div class="nav-left visible-xs">
+      		<div class="button" id="btn">
+	        	<div class="bar top"></div>
+	        	<div class="bar middle"></div>
+	        	<div class="bar bottom"></div>
+	      	</div>
+    	</div>	    
+	  	<!-- /Nav-left -->
+
+	  	<!--============= Contents go here =============-->
+
+	  	<div class="container-fluid nav-background">
+  			<div class="row">
+  				<div class="nav-background">
+		  			<a href="index.html"><div class="nav-title-link"></div></a>
+		  		</div>
+	  		</div>
+	  	</div>	  	
+
+	  	<!-- Contents -->
+	  	<div class="container-fluid contents">	  		
+			<div class="row">
+	            <div class="col-xs-12">
+	            	<h1 class="text-center content-heading"><span>Bisection Method</span></h1>
+					<div class="paragraph padding">
+						<p><span class="tab"></span>The bisection method in mathematics is a root-finding method that repeatedly bisects an interval and then selects a subinterval in which a root must lie for further processing. It is a very simple and robust method, but it is also relatively slow. Because of this, it is often used to obtain a rough approximation to a solution which is then used as a starting point for more rapidly converging methods.
+						</p>
+						<br>
+						<p><span class="tab"></span>This method is based on the intermediate value theorem for continuous functions, which says that any continuous function f (x) in the interval [a,b] which satisfies f (a) * f (b) < 0 must have a zero in the interval [a,b]. Methods which uses this theorem are called dichotomy methods, because they divide the interval into two parts (not necessary equal).</p>
+
+						<img src="public/images/graph.png" id="center-image">
+
+						<p><span class="tab"></span>At each step the method divides the interval in two by computing the midpoint xm = (xl + xu) / 2 of the interval and the value of the function f(xm) at that point. Unless xm is itself a root (which is very unlikely, but possible) there are now only two possibilities: either f(xl) and f(xm) have opposite signs and bracket a root, or f(xm) and f(xu) have opposite signs and bracket a root. The method selects the subinterval that is guaranteed to be a bracket as the new interval to be used in the next step. In this way an interval that contains a zero of f is reduced in width by 50% at each step. The process is continued until the interval is sufficiently small.</p>
+						<div class="text-center">
+							<a href="bisectionmethod.html" class="btn btn-custom btn-lg" style="margin-top: 30px;">Start Bisection Method</a>
+						</div>
+					</div>					
+	            </div>
+
+	            <div class="col-xs-12" style="margin-top: 80px;">
+	       			<h1 class="text-center content-heading"><span>Real Life Applications</span></h1>
+
+					<div class="col-xs-4">
+						<div class="service-box">
+							<h4>Locating and computing periodic orbits in molecular systems </h4>
+
+							<p>The Characteristic Bisection Method for finding the roots of non-linear algebraic and/or transcendental equations is applied to LiNC/LiCN molecular system to locate periodic orbits and to construct the continuation/bifurcation diagram of the bend mode family.</p>
+							<a href="reallifeapplication.html" class="btn btn-custom">Learn more</a>
+						</div>
+					</div>
+
+					<div class="col-xs-4">
+						<div class="service-box">						
+							<h4>Shot Detection in Video Content for Digital Video Library</h4>
+
+							<p>The study presented the usage of bisection method for shot detection in video content for the Digital Video Library (DVL). DVL is a networked Internet application allowing for storage, searching, cataloguing, browsing, retrieval, searching and uni-casting video sequences.</p>
+							<a href="reallifeapplication.html" class="btn btn-custom">Learn more</a>
+						</div>
+					</div>					
+
+					<div class="col-xs-4">
+						<div class="service-box">
+							<h4>Bisection method for determining an adequate population size</h4>
+
+							<p>The basic idea is to first determine a reasonable initial interval (min,max) of population sizes where min is too small and max is too large. Then, this interval is halved again and again until it is small enough.</p>
+							<a href="reallifeapplication.html" class="btn btn-custom">Learn more</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xs-12" style="margin-top: 80px;">
+					<h1 class="text-center content-heading"><span>Algorithm</span></h1>
+					<div class="paragraph padding">					
+						<p>1. Find points <strong>xl</strong> and <strong>xu</strong> such that <strong>xl < xu and f(xl) * f(xu) < 0</strong>
+						<br><br>
+						2. Take the interval <strong>[xl, xu]</strong> and find its midpoint <strong>xm</strong> by:<br><span class="tab"></span><strong>xm = (xl + xu) / 2</strong>
+						<br><br>
+						3. Evaluation
+						<br>
+						<span class="tab"></span>i&nbsp;&nbsp;&nbsp;Find <strong>f(xm)</strong>
+						<br>
+						<span class="tab"></span>ii&nbsp;&nbsp;&nbsp;Multiply: <strong>f(xl) * f(xm)</strong>
+						<br>
+						<span class="tab"></span><span class="tab"></span>a)&nbsp;&nbsp;&nbsp;If <strong>f(xl) * f(xm) < 0</strong> then true value is in the first sub interval.
+						<br>
+						<span class="tab"></span><span class="tab"></span><span class="tab"></span>then take <strong>xu = xm</strong>
+						<br>
+						<span class="tab"></span><span class="tab"></span>b)&nbsp;&nbsp;&nbsp;If <strong>f(xl) * f(xm) > 0</strong> then true value is in the second sub interval.
+						<br>
+						<span class="tab"></span><span class="tab"></span><span class="tab"></span>then take <strong>xl = xm</strong>
+						<br>
+						<span class="tab"></span><span class="tab"></span>c)&nbsp;&nbsp;&nbsp;If <strong>f(xl) * f(xm) = 0</strong>
+						<br>
+						<span class="tab"></span><span class="tab"></span><span class="tab"></span><strong>true value = xm</strong>
+						<br>
+						<span class="tab"></span><span class="tab"></span><span class="tab">STOP COMPUTATION
+						<br><br>
+						4. Repeat steps 2 & 3 until <strong>f(xm) = 0</strong> or <strong>| f(xm) |</strong> <= Tolerance (DOA), where Tolerance (DOA) stands for degree of accuracy.</p>
+
+						<div class="text-center">
+							<a href="bisectionmethod.html" class="btn btn-custom btn-lg" style="margin-top: 30px;">Get Started</a>
+						</div>
+					</div>					
+				</div>
+       		</div>
+	  	</div>
+	  	<!-- /Contents -->
+
+	  	<!-- Footer -->
+		<div class="container-fluid footer">
+			<div class="row">
+				<div class="text-center footer-contents" style="padding-top: 20px;">
+					<h3 class="footer-heading"><span>Group 6, BSCS-3A</span></h3>
+					<p class="col-xs-4" style="margin-top: 30px;">Marc Abensaid Gamil</p>
+					<p class="col-xs-4" style="margin-top: 30px;">Patrick Dale Rugayan</p>
+					<p class="col-xs-4" style="margin-top: 30px;">Kyle Gabriel Evangelista</p>
+					<p class="col-xs-4" style="margin-top: 20px;">Loren Ross de Leon</p>
+					<p class="col-xs-4" style="margin-top: 20px;">Raul Rex Tabuena</p>
+					<p class="col-xs-4" style="margin-top: 20px;">Justin Melvey Yumul</p>
+				</div>
+				
+				<div class="col-xs-12 copyright text-center" style="margin-top: 30px;">Copyright © 2017</div>
+			</div>
+		</div>
+		<!-- /Footer -->
+		
+		<!-- Return to Top -->
+		<a href="javascript:" id="return-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
+
+		<!--============= /Contents go here =============-->
+	</main>
+
+	<!-- Nav-left (sidebar) contents -->
+	<div class="sidebar">
+	  	<ul class="sidebar-list">
+	    	<li class="sidebar-item"><a href="index.html" class="sidebar-anchor">Introduction</a></li>
+	    	<li class="sidebar-item"><a href="bisectionmethod.html" class="sidebar-anchor">Bisection Method</a></li>
+	    	<li class="sidebar-item"><a href="reallifeapplication.html" class="sidebar-anchor">Applications</a></li>
+	 	 </ul>
+	</div>
+	<!-- /Nav-left (sidebar) contents -->
+
+	<!-- Scripts -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script type="text/javascript" src="public/js/jquery-3.1.1.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" src="public/js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src="public/js/scripts.js"></script>	
+	<script type="text/javascript" src="public/js/navscripts.js"></script>
+	<script type="text/javascript" src="public/js/returnToTop.js"></script>
+</body>
+
+</html>

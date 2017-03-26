@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Bisection Method</title>
+	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="public/css/styles.css">
+</head>
+
+<body>
+	<div class="nav-left hidden-xs">
+  		<div class="button" id="btn">
+	    	<div class="bar top"></div>
+	    	<div class="bar middle"></div>
+	    	<div class="bar bottom"></div>
+	  	</div>
+	</div>
+	
+	<main>
+		<!-- Nav-left -->
+    	<div class="nav-left visible-xs">
+      		<div class="button" id="btn">
+	        	<div class="bar top"></div>
+	        	<div class="bar middle"></div>
+	        	<div class="bar bottom"></div>
+	      	</div>
+    	</div>	    
+	  	<!-- /Nav-left -->
+
+	  	<!--============= Contents go here =============-->
+
+	  	<div class="container-fluid">
+		  	<div class="row">
+		  		<div class="nav-background">
+		  			<a href="index.html"><div class="nav-title-link"></div></a>
+		  		</div>
+		  	</div>
+		</div>
+
+	  	<!-- Contents -->
+	  	<div class="container-fluid contents">
+	  		<div class="row">	  			
+	  			<div class="col-xs-6" style="margin-left: 40px;"><h2 class="semi-title">Initializations</h2></div>
+	  			<div class="col-xs-6" style="margin-left: -40px;"><h2 class="semi-title">Conditions</h2></div>
+
+		  		<!-- Inputs -->
+				<form onsubmit="return Bisect();" class="form-horizontal" autocomplete="off">
+					<!-- Function -->
+					<div class="col-xs-6" style="margin-left: 30px;">
+						<div class="form-group">
+							<label for="function" class="col-xs-4">Function</label>
+							<div class="col-xs-7">
+								<input type="text" class="form-control" id="function" placeholder="sin(x) - cos(x)" required>
+							</div>
+						</div>
+
+						<!-- Initial value xl -->
+						<div class="form-group">
+							<label for="initial_xl" class="col-xs-4">Initial Value x&#x1d4c1;</label>
+							<div class="col-xs-7">
+								<input type="text" class="form-control" id="initial_xl" placeholder="-3" required>
+							</div>
+						</div>
+
+						<!-- Initial value xu -->
+						<div class="form-group">
+							<label for="initial_xu" class="col-xs-4">Initial Value x&#x1d4ca;</label>
+							<div class="col-xs-7">
+								<input type="text" class="form-control" id="initial_xu" placeholder="3" required>
+							</div>
+						</div>					
+
+						<!-- Calculation Precision -->
+						<div class="form-group">
+							<label for="precision" class="col-xs-4">Significant Digits</label>
+							<div class="col-xs-7">
+								<input type="text" class="form-control" id="precision" placeholder="5" required>
+							</div>
+						</div>					
+					</div>
+
+					<div class="col-xs-6" style="margin-left: -30px;">					
+						<!-- Max Iteration -->
+						<div class="form-group">
+							<label for="max_iteration" class="col-xs-4">Max Iteration</label>
+							<div class="col-xs-7">
+								<input type="text" class="form-control" id="max_iterations" placeholder="10" required>
+							</div>
+						</div>
+
+						<!-- Desired Tolerance -->
+						<div class="form-group">
+							<label for="tolerance" class="col-xs-4">Desired Tolerance</label>
+							<div class="col-xs-7">
+								<input type="text" class="form-control" id="tolerance" placeholder="0.01" required>
+							</div>
+						</div>
+
+						<!-- Button -->
+						<div class="form-group">
+							<div class="col-xs-12 text-right" style="margin-top: 5px; padding-right: 65px;">
+								<button type="submit" class="btn btn-custom btn-lg"  style="width:200px;">Calculate</button>
+							</div>
+						</div>
+					</div>
+				</form>
+
+		  		<!-- Table -->
+		  		<div class="col-xs-12" id="output" style="margin-top: 70px;">
+		  			<hr>
+
+		  			<h2 class="text-center" id="plot_function">Graphical Representation</h2>
+			  		<div class="text-center" id="plot"></div>
+
+			  		<hr>
+
+			  		<h2 class="text-center" style="margin-bottom: 50px;">Table Representation</h2>
+			  		<table class="table table-style" id="table">	  			
+			  			<tr>
+			  				<th>i</th>
+			  				<th>x&#x1d4c1;i</th>
+			  				<th>f(x&#x1d4c1;i)</th>
+			  				<th>x&#x1d4ca;i</th>
+			  				<th>f(x&#x1d4ca;i)</th>
+			  				<th>xmi+1</th>
+			  				<th>f(xmi+1)</th>
+			  				<th>&#x2208;a%</th>
+			  				<th>&#x2208;T%</th>
+			  			</tr>	  			
+			  			<!-- Values will be inserted here by scripts.js -->
+			  		</table>
+
+			  		<h4 class="text-center arial" id="approx" style="margin-top: 40px;"></h4>	
+		  		</div> 		
+		  	</div>	  		
+	  	</div>
+
+	  	<!-- /Contents -->	 
+
+	  	<!-- Footer -->
+		<div class="container-fluid footer">
+			<div class="row">
+				<div class="text-center footer-contents" style="padding-top: 20px;">
+					<h3 class="footer-heading"><span>Group 6, BSCS-3A</span></h3>
+					<p class="col-xs-4" style="margin-top: 30px;">Marc Abensaid Gamil</p>
+					<p class="col-xs-4" style="margin-top: 30px;">Patrick Dale Rugayan</p>
+					<p class="col-xs-4" style="margin-top: 30px;">Kyle Gabriel Evangelista</p>
+					<p class="col-xs-4" style="margin-top: 20px;">Loren Ross de Leon</p>
+					<p class="col-xs-4" style="margin-top: 20px;">Raul Rex Tabuena</p>
+					<p class="col-xs-4" style="margin-top: 20px;">Justin Melvey Yumul</p>
+				</div>
+				
+				<div class="col-xs-12 copyright text-center" style="margin-top: 30px;">Copyright © 2017</div>
+			</div>
+		</div>
+		<!-- /Footer --> 	
+		
+		<!-- Return to Top -->
+		<a href="javascript:" id="return-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>	
+
+		<!--============= /Contents go here =============-->
+	</main>
+
+	<!-- Nav-left (sidebar) contents -->
+	<div class="sidebar">
+	  	<ul class="sidebar-list">
+	    	<li class="sidebar-item"><a href="index.html" class="sidebar-anchor">Introduction</a></li>
+	    	<li class="sidebar-item"><a href="bisectionmethod.html" class="sidebar-anchor">Bisection Method</a></li>
+	    	<li class="sidebar-item"><a href="reallifeapplication.html" class="sidebar-anchor">Applications</a></li>
+	 	 </ul>
+	</div>
+	<!-- /Nav-left (sidebar) contents -->
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="public/js/jquery-3.1.1.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" src="public/js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src="public/js/scripts.js"></script>	
+	<script type="text/javascript" src="public/js/navscripts.js"></script>
+	<script type="text/javascript" src="public/js/returnToTop.js"></script>
+	<script type="text/javascript" src="public/js/math.js"></script>
+ 	<script type="text/javascript" src="public/js/d3.min.js"></script>
+	<script type="text/javascript" src="public/js/function-plot.js"></script>
+	<script type="text/javascript" src="public/js/bisectionmethod.js"></script>	
+
+	<!-- Hides the table, (show it when calculate button is pressed) -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#output").hide();
+		});
+	</script>
+</body>
+
+</html>
